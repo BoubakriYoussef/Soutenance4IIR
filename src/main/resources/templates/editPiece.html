@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template1">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mise à jour Piece</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="text-center">Mise à jour Piéce</div>
+<div layout:fragment="content1">
+    <div class="col-md-6 offset-3">
+        <form class="mb-3" method="post" th:action="@{/savePiece}" th:object="${piece}">
+
+            <div class="mb-3">
+                <label for="idPiece">ID Piece</label>
+                <input id="idPiece" class="form-control" type="text" name="idPiece" th:readonly="true" th:value="${piece.idPiece}">
+            </div>
+
+            <div class="mb-3">
+                <label for="nom_Piece">Nom Piece :</label>
+                <input id="nom_Piece" class="form-control" type="text" name="nom_Piece" th:value="${piece.nom_Piece}">
+                <span class="text-danger" th:errors="${piece.nom_Piece}"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="description">Description</label>
+                <input id="description" class="form-control" type="text" name="description" th:value="${piece.description}">
+                <span class="text-danger" th:errors="${piece.description}"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="poidsNet">poidsNet</label>
+                <input id="poidsNet" class="form-control" type="text" name="poidsNet" th:value="${piece.poidsNet}">
+                <span class="text-danger" th:errors="${piece.poidsNet}"></span>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="nuance">Nuance :</label>
+                <select name="nuance.typeNuance" id="nuance">
+                    <option th:each="nuance : ${nuances}" th:value="${nuance.idNuance}" th:text="${nuance.typeNuance}"></option>
+                </select>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="process">Process</label>
+                <select name="process" id="process">
+                    <option th:each="process : ${processes}" th:value="${process.idProcess}" th:text="${process.typeProcess}"></option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="format">Forme</label>
+                <select name="format.typeFormat" id="format">
+                    <option th:each="format : ${formats}" th:value="${format.idFormat}" th:text="${format.typeFormat}"></option>
+                </select>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="materiau">Materiau :</label>
+                <select name="materiau" id="materiau">
+                    <option th:each="materiau : ${materiaux}" th:value="${materiau.idMateriau}" th:text="${materiau.typeMateriau}"></option>
+                </select>
+            </div>
+
+
+
+            <div class="mb-3">
+                <label for="prixVente">Prix de vente :</label>
+                <input id="prixVente" class="form-control" type="text" name="prixVente" th:value="${piece.prixVente}">
+                <span class="text-danger" th:errors="${piece.prixVente}"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="stock">Quantité en stock :</label>
+                <input id="stock" class="form-control" type="text" name="stock" th:value="${piece.stock}">
+                <span class="text-danger" th:errors="${piece.stock}"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+
+        </form>
+    </div>
+
+</div>
+</body>
+</html>
